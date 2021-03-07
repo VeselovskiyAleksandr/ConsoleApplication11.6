@@ -3,11 +3,14 @@
 
 #include <iostream>
 #include <locale.h>
+#include <cmath>
 using namespace std;
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    int row, col, east=17;
+    int row, col, east=19, y=0, z=0;
+    float  x = 1.496*pow(10,11);
+   
     string direct, str = "   М        А        Р       С ";
     while (true) {
         for (row = 0; row < 45; row++) {
@@ -34,6 +37,12 @@ int main()
                 if (row == 43 && col >= 0 && col < 21) {
                     cout << "=";
                 }
+                if (row == 3 && col == 22) {
+                    cout << "X";
+                }
+                if (row == 42 && col == 39) {
+                    cout << "Y";
+                }
                 if (row == 44 && col == 3) {
                     cout << str;
                 }
@@ -45,18 +54,25 @@ int main()
                 }
             }
         }
-                cout << "\nУкажите направление движения марсохода (a - запад, d - восток) ";
+                cout << "\nУкажите направление движения марсохода (a - запад, d - восток, w - север, s - юг. ) ";
                 cin >> direct;
                if (direct == "d") {
-                    east++;
+                   east++; y++;
                 }
                 if (direct == "a") {
-                    east--;
+                    east--; y--;
+                }
+                if (direct == "w") {
+                    z++;
+                }
+                if (direct == "s") {
+                    z--;
                 }
                 if (east == 0 || east >= 38) {
-                    cout << "\n            В Н И М А Н И Е!!! ";
-                    cout << "\n   Марсоход пропадает из зоны видимости.";
+                    cout << "\n\n В Н И М А Н И Е!!! ";
+                    cout << " Марсоход пропадает из зоны видимости.";
                 }
+                cout << "\nКоординаты марсохода: x=" << x << "; y=" << y << "; z=" << z << ".";
                 cout << "\n\n";
         
     }
